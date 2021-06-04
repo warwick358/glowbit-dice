@@ -10,7 +10,8 @@
     "files": [
         "main.blocks",
         "main.ts",
-        "README.md"
+        "README.md",
+        "glowbit_dice_tutorial.md"
     ],
     "testFiles": [
         "test.ts"
