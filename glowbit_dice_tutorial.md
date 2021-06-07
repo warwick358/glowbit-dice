@@ -9,7 +9,7 @@ Change the pin to the pin you have the Globit data cable conected to (default P0
 Be sure to select "RGB" for the type of LED in the Globit.
 
 ```block
-
+let strip = neopixel.create(DigitalPin.P0, 13, NeoPixelMode.RGB)
 
 ```
 
@@ -39,8 +39,13 @@ Next we need to go to the "neopixal" tab and get the "clear" block and place it 
 Then go to the "variable" tab and get the "set to" block and place it under the "clear" block in the "on button A pressed" block.
 Change the variable in the dropdown box to "die1value" and input a "pick random" block from the "math"tab. change the number values to "0 to 5"
 Now we will put in a loop looking for the button A press. go to the "loop" tab and select "for index from 0 to 4" block and place it under the "set die1value to" block in the "on button A pressed" block. Change the block to read "for index from 0 to 5".
-
-
+In the loop we are going to put a "if then" statement from the "logic" tab to check the value of the die and display the value.
+We need to replace the "true" part of the "if then" statement with a comparsion block fron the "logic" tab. The "0 = 0" block.
+Next change the comparsion block using the "variables" tab to read "index <= die1value"
+From the "neopixal" "more" tab select the "strip set pixal colour at 0 to red" block and place it after "then" in the "if then" block.
+Use the "variables"tab to change the block to read "die1 set pixal colour at index to purple" 
+The last section of this step is to display the die on the glowbit. 
+Go to the "neopixal" tab and select the "strip show" block and place it after the "for do" loop in the "on button A pressed" block. Use the dropdown to change strip to "die1"
 
 ```block
 let die1value = 0
@@ -56,4 +61,76 @@ input.onButtonPressed(Button.A, function () {
     die1.show()
 ```
 
-## 
+## Step 5 Button B setup.
+To start we need to go to the "input" tab and get a "on button A pressed" block and place it in the workspace. Change "A" to "B"
+We are going to use a "for do" block from the "loop"tab. place this in the "on button A pressed" block.
+
+Next we need to go to the "neopixal" tab and get the "clear" block and place it in the "for do" block, change the variable to "die2"
+Then go to the "variable" tab and get the "set to" block and place it under the "clear" block in the "on button A pressed" block.
+Change the variable in the dropdown box to "die2value" and input a "pick random" block from the "math"tab. change the number values to "0 to 5"
+Now we will put in a loop looking for the button B press. Go to the "loop" tab and select "for index from 0 to 4" block and place it under the "set die2value to" block in the "on button B pressed" block. Change the block to read "for index3 from 0 to 5".
+In the loop we are going to put a "if then" statement from the "logic" tab to check the value of the die and display the value.
+We need to replace the "true" part of the "if then" statement with a comparsion block fron the "logic" tab. The "0 = 0" block.
+Next change the comparsion block using the "variables" tab to read "index >= to die2value"
+From the "neopixal" "more" tab select the "strip set pixal colour at 0 to red" block and place it after "then" in the "if then" block.
+Use the "variables"tab to change the block to read "die2 set pixal colour at index3 to orange" 
+The last section of this step is to display the die on the glowbit. 
+Go to the "neopixal" tab and select the "strip show" block and place it after the "for do" loop in the "on button B pressed" block. Use the dropdown to change strip to "die2"
+Place a "pause" block from the "Basic" tab after the "strip show" block. Set the pause to "50"
+
+```block
+let die2value = 0
+input.onButtonPressed(Button.B, function () {
+    // Include a "scramble" function for added suspense!
+    for (let index2 = 0; index2 <= 20; index2++) {
+        let die2: neopixel.Strip = null
+        die2.clear()
+        die2value = randint(0, 5)
+        for (let index3 = 0; index3 <= 5; index3++) {
+            if (index3 >= die2value) {
+                die2.setPixelColor(index3, neopixel.colors(NeoPixelColors.Orange))
+            }
+        }
+        die2.show()
+        basic.pause(50)
+    }
+```
+## Step 6 Check and download the code to the Microbit.
+
+```block
+input.onButtonPressed(Button.A, function () {
+    die1.clear()
+    die1value = randint(0, 5)
+    for (let index = 0; index <= 5; index++) {
+        if (index <= die1value) {
+            die1.setPixelColor(index, neopixel.colors(NeoPixelColors.Purple))
+        }
+    }
+    die1.show()
+})
+input.onButtonPressed(Button.B, function () {
+    // Include a "scramble" function for added suspense!
+    for (let index2 = 0; index2 <= 20; index2++) {
+        die2.clear()
+        die2value = randint(0, 5)
+        for (let index3 = 0; index3 <= 5; index3++) {
+            if (index3 >= die2value) {
+                die2.setPixelColor(index3, neopixel.colors(NeoPixelColors.Orange))
+            }
+        }
+        die2.show()
+        basic.pause(50)
+    }
+})
+let die2value = 0
+let die1value = 0
+let die2: neopixel.Strip = null
+let die1: neopixel.Strip = null
+let strip = neopixel.create(DigitalPin.P0, 13, NeoPixelMode.RGB)
+die1 = strip.range(0, 6)
+die2 = strip.range(7, 6)
+strip.setBrightness(25)
+basic.forever(function () {
+	
+})
+```
