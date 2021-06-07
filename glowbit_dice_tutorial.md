@@ -59,12 +59,16 @@ basic.forever(function () {
 
 ## Step 5 
 Button A setup.
-Now we will put in a loop looking for the button A press. Go to the "loop" tab and select "for index from 0 to 4" block and place it under the "set die1value to" block in the "on button A pressed" block. Change the block to read "for index from 0 to 5".
+Now we will put in a loop looking for the button A press. 
+Go to the "loop" tab and select "for index from 0 to 4" block and place it under the "set die1value to" block in the "on button A pressed" block. Change the block to read "for index from 0 to 5".
+
 In the loop we are going to put a "if then" statement from the "logic" tab to check the value of the die and display the value.
 We need to replace the "true" part of the "if then" statement with a comparsion block fron the "logic" tab. The "0 = 0" block.
 Next change the comparsion block using the "variables" tab to read "index <= die1value"
+
 From the "neopixal" "more" tab select the "strip set pixal colour at 0 to red" block and place it after "then" in the "if then" block.
 Use the "variables"tab to change the block to read "die1 set pixal colour at index to purple" 
+
 The last section of this step is to display the die on the glowbit. 
 Go to the "neopixal" tab and select the "strip show" block and place it after the "for do" loop in the "on button A pressed" block. Use the dropdown to change strip to "die1"
 
@@ -108,6 +112,8 @@ Now we will put in a loop looking for the button B press. Go to the "loop" tab a
 In the loop we are going to put a "if then" statement from the "logic" tab to check the value of the die and display the value.
 We need to replace the "true" part of the "if then" statement with a comparsion block fron the "logic" tab. The "0 = 0" block.
 Next change the comparsion block using the "variables" tab to read "index >= to die2value"
+
+
 From the "neopixal" "more" tab select the "strip set pixal colour at 0 to red" block and place it after "then" in the "if then" block.
 Use the "variables"tab to change the block to read "die2 set pixal colour at index3 to orange" 
 The last section of this step is to display the die on the glowbit. 
@@ -131,7 +137,8 @@ input.onButtonPressed(Button.B, function () {
         basic.pause(50)
     }
 ```
-## Step 7 Check and download the code to the Microbit.
+## Step 8 
+Check and download the code to the Microbit.
 
 ```block
 input.onButtonPressed(Button.A, function () {
